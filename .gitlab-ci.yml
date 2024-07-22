@@ -1,0 +1,39 @@
+image: maven:3.8.7-eclipse-temurin-19
+
+variables:
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+  SKIP_TESTS: "-DskipTests=true -Djacoco.skip=true"
+
+cache:
+  paths:
+    - .m2/repository/
+
+stages:
+  - build
+  - test
+  - deploy
+
+maven-build:
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS package $SKIP_TESTS'
+  artifacts:
+    paths:
+      - target/
+    expire_in: 30 mins
+
+unit-test:
+  stage: test
+  script:
+    - 'mvn $MAVEN_CLI_OPTS surefire:test'
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 30 mins
+
+release-package:
+  stage: deploy
+  script:
+    - 'mvn $MAVEN_CLI_OPTS deploy $SKIP_TESTS -s ci_settings.xml'
+  only: [ 'main', 'tags' ]
