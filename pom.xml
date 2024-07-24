@@ -39,7 +39,6 @@
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin Configuration -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,7 +47,6 @@
                     <release>${java.version}</release>
                 </configuration>
             </plugin>
-            <!-- Maven Release Plugin Configuration -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
