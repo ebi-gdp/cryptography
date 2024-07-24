@@ -3,7 +3,7 @@
 
     <groupId>uk.ac.ebi.gdp.intervene</groupId>
     <artifactId>cryptography</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -15,7 +15,7 @@
 
     <scm>
         <connection>scm:git:git@github.com:ebi-gdp/cryptography.git</connection>
-        <tag>1.0.4</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
