@@ -35,7 +35,8 @@ unit-test:
 release-package:
   stage: deploy
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main" && $CI_COMMIT_TAG'
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG'
+      when: always
   script:
     - 'mvn $MAVEN_CLI_OPTS deploy $SKIP_TESTS -s ci_settings.xml'
   release:
