@@ -68,8 +68,8 @@ public class AESCryptography {
         }
     }
 
-    public String doEncrypt(final byte[] data,
-                            final char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException,
+    private String doEncrypt(final byte[] data,
+                             final char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException,
             IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeyException {
         final byte[] salt = generateSalt();
         final SecretKey secretKey = getKeyFromPassword(password, salt);
@@ -93,8 +93,8 @@ public class AESCryptography {
         }
     }
 
-    public byte[] doDecrypt(final String encryptedData,
-                            final char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException,
+    private byte[] doDecrypt(final String encryptedData,
+                             final char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException,
             InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         final byte[] decodedData = Base64
                 .getDecoder()
